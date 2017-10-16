@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="obra_social")
+//@Entity
+//@Table(name="obra_social")
 public class ObraSocial implements Serializable{
 
 	

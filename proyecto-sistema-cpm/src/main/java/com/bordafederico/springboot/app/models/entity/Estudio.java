@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="estudio")
+//@Entity
+//@Table(name="estudio")
 public class Estudio implements Serializable{
 
 

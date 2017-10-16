@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name="turno_consulta")
+//@Entity
+//@Table(name="turno_consulta")
 public class TurnoConsulta implements Serializable{
 
 

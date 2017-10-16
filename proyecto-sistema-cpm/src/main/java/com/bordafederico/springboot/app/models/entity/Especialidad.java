@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="especialidad")
+//@Entity
+//@Table(name="especialidad")
 public class Especialidad implements Serializable{
 
 	

@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name="nota")
+//@Entity
+//@Table(name="nota")
 public class Nota implements Serializable{
 
 	

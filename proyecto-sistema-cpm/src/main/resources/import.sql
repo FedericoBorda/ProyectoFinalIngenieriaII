@@ -1,0 +1,3 @@
+/* Populate tables */
+INSERT INTO paciente (dni_paciente, nombre_paciente, apellido_paciente, fecha_nacimiento_pa, sexo_paciente, direccion_paciente, tel_paciente, email_paciente) VALUES(34557182, 'Federico', 'Borda', '1989-07-21', 'masc', 'pasaje palpa 3532', 4323461, 'federicoborda3@hotmail.com');
+INSERT INTO paciente (dni_paciente, nombre_paciente, apellido_paciente, fecha_nacimiento_pa, sexo_paciente, direccion_paciente, tel_paciente, email_paciente) VALUES(34557184, 'Juan', 'Perez', '1980-01-02', 'masc', 'cafferata 3532', 4333463, 'juanperez@hotmail.com');
