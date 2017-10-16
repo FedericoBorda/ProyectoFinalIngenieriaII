@@ -17,7 +17,7 @@ public class PacienteController {
 	private IPacienteDao pacienteDao;
 	
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
-	public String listar(Model model) {
+	public String listar(Model model) {		
 		model.addAttribute("titulo", "Listado de Pacientes");
 		model.addAttribute("pacientes", pacienteDao.findAll());
 		return "listar";

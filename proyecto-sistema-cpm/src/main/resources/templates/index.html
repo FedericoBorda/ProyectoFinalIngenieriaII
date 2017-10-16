@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${pagInicio}"></title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">C.P.M.</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#about"
+					th:href="@{/index}">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" href="#about"
+					th:href="@{/listar}">Pacientes</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1 class="text-secondary text-center" th:text="${bienvenido}"></h1>
+		<h1
+			class="text-secondary text-center border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${sistemacpm}"></h1>
+
+
+	</div>
+</body>
+</html>

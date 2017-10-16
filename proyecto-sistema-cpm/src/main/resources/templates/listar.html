@@ -3,38 +3,60 @@
 <head>
 <meta charset="UTF-8" />
 <title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
 </head>
 
 <body>
-	<h1 th:text="${titulo}"></h1>
 
-	<table>
-		<thead>
-			<tr>
-				<th>DNI</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Fecha de Nacimiento</th>
-				<th>Sexo</th>
-				<th>Dirección</th>
-				<th>Teléfono</th>
-				<th>Email</th>
-			</tr>
-		</thead>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">C.P.M.</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#about"
+					th:href="@{/index}">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" href="#about"
+					th:href="@{/listar}">Pacientes</a></li>
+			</ul>
+		</div>
+	</nav>
 
-		<tbody>
-			<tr th:each="paciente: ${pacientes}">
-				<td th:text="${paciente.dni_paciente}"></td>
-				<td th:text="${paciente.nombre_paciente}"></td>
-				<td th:text="${paciente.apellido_paciente}"></td>
-				<td th:text="${paciente.fecha_nacimiento_pa}"></td>
-				<td th:text="${paciente.sexo_paciente}"></td>
-				<td th:text="${paciente.direccion_paciente}"></td>
-				<td th:text="${paciente.tel_paciente}"></td>
-				<td th:text="${paciente.email_paciente}"></td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="container">
+		<h1
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
 
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>DNI</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Fecha de Nacimiento</th>
+					<th>Sexo</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="paciente: ${pacientes}">
+					<td th:text="${paciente.dni_paciente}"></td>
+					<td th:text="${paciente.nombre_paciente}"></td>
+					<td th:text="${paciente.apellido_paciente}"></td>
+					<td th:text="${paciente.fecha_nacimiento_pa}"></td>
+					<td th:text="${paciente.sexo_paciente}"></td>
+					<td th:text="${paciente.direccion_paciente}"></td>
+					<td th:text="${paciente.tel_paciente}"></td>
+					<td th:text="${paciente.email_paciente}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
