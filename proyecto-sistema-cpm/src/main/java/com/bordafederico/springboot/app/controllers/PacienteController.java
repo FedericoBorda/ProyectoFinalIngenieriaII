@@ -2,10 +2,13 @@ package com.bordafederico.springboot.app.controllers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,7 +43,12 @@ public class PacienteController {
 	
 	//METODO QUE REALIZA LA PARTE DEL POST DE LA CREACION DEL PACIENTE PERSISITIENDO EL MISMO EN LA BD
 	@RequestMapping(value="/formpaciente", method=RequestMethod.POST)
-	public String guardarPaciente(Paciente paciente) {		
+	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model) {//@valid habilita la validacion en el objeto mapeado al form	
+		
+		if(resultado.hasErrors()) {//si el resultado contiene errores retornamos al formulario
+			model.put("tituloform", "Formulario de Alta de Paciente");
+			return "formpaciente";
+		}
 		
 		pacienteDao.savePaciente(paciente);		
 		return "redirect:listar";

@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="paciente")
@@ -18,23 +21,32 @@ public class Paciente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
+	@NotNull
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //esto indica que el campo es autoincremental
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) //esto indica que el campo es autoincremental
 	private Long dni_paciente;
 	
+	@NotEmpty  //validacion que indica que el tiene que venir el campo con contenido >0
 	private String nombre_paciente;
+	
+	@NotEmpty
 	private String apellido_paciente;
 	
+	@NotNull
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fecha_nacimiento_pa;
 	
 	private String sexo_paciente;
-	private String direccion_paciente;
-	private Long tel_paciente;
-	private String email_paciente;
 	
-		
+	@NotEmpty
+	private String direccion_paciente;
+	
+	@NotNull
+	private Long tel_paciente;
+	
+	@Email
+	private String email_paciente;
 	
 	
 	
