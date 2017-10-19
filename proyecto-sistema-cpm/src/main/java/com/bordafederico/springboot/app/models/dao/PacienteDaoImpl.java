@@ -27,8 +27,20 @@ public class PacienteDaoImpl implements IPacienteDao {
 	@Override
 	@Transactional //aca no ponemos el readOnly ya que es de escritura para insertar un nuevo registro
 	public void savePaciente(Paciente paciente) {
-		em.persist(paciente);
+		if(paciente.getDni_paciente() != null && paciente.getDni_paciente() > 0) {
+			System.out.println("DNI " + paciente.getDni_paciente());
+			em.merge(paciente);//merge lo que hace es actualizar lo datos esxistentes
+		}else {
+			em.persist(paciente);
+		}
 		
+		
+	}
+
+	@Override
+	public Paciente findOnePaciente(Long dni_paciente) {
+		
+		return em.find(Paciente.class, dni_paciente);
 	}
 
 }
