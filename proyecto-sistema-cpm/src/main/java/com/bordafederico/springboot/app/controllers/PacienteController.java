@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,22 +15,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.bordafederico.springboot.app.models.dao.IPacienteDao;
+
 import com.bordafederico.springboot.app.models.entity.Paciente;
+import com.bordafederico.springboot.app.models.service.IPacienteService;
 
 @Controller   //marcamos asi que la clase es de tipo controlador
 @SessionAttributes("paciente") //al implementar esto lo que hace es que guardar el objeto paciente en la session hasta que el mismo persista completamente en la bd
 public class PacienteController {
 	
 	@Autowired  //busca un componente registrado en el contenedor registrado como PacienteDao
-	@Qualifier("pacienteDaoJPA")
-	private IPacienteDao pacienteDao;
+	//@Qualifier("pacienteDaoJPA")
+	private IPacienteService pacienteService;
+	//private IPacienteDao pacienteDao; lo comentamos porque ahora usamos el Service
 	
 	//METODO QUE LISTA LOS PACIENTE
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
 	public String listar(Model model) {		
 		model.addAttribute("titulo", "Listado de Pacientes");
-		model.addAttribute("pacientes", pacienteDao.findAll());
+		model.addAttribute("pacientes", pacienteService.findAll());
 		return "listar";
 	}
 	
@@ -53,7 +55,7 @@ public class PacienteController {
 		Paciente paciente = null;
 		
 		if(dni_paciente > 0) {
-			paciente = pacienteDao.findOnePaciente(dni_paciente);
+			paciente = pacienteService.findOnePaciente(dni_paciente);
 		}else {
 			return "redirect:/listar";
 		}
@@ -73,7 +75,7 @@ public class PacienteController {
 			return "formpaciente";
 		}
 		
-		pacienteDao.savePaciente(paciente);	
+		pacienteService.savePaciente(paciente);	
 		status.setComplete();
 		return "redirect:listar";
 	}
@@ -84,7 +86,7 @@ public class PacienteController {
 	public String eliminarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente){
 		
 		if(dni_paciente > 0) {
-			pacienteDao.deletePaciente(dni_paciente);
+			pacienteService.deletePaciente(dni_paciente);
 		}
 		return "redirect:/listar";
 	}
