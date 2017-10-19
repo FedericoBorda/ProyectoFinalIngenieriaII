@@ -7,5 +7,7 @@ import com.bordafederico.springboot.app.models.entity.Paciente;
 public interface IPacienteDao {
 	
 	public List<Paciente> findAll(); //findAll es un metodo que retornaria a todos los pacientes
+	
+	public void savePaciente(Paciente paciente);//save es un contrato de implementacion para guardar un paciente la base de datos
 
 }

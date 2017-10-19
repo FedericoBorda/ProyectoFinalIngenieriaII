@@ -24,4 +24,11 @@ public class PacienteDaoImpl implements IPacienteDao {
 		return em.createQuery("from Paciente").getResultList();
 	}
 
+	@Override
+	@Transactional //aca no ponemos el readOnly ya que es de escritura para insertar un nuevo registro
+	public void savePaciente(Paciente paciente) {
+		em.persist(paciente);
+		
+	}
+
 }
