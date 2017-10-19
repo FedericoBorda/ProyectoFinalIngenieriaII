@@ -32,15 +32,25 @@ public class PacienteDaoImpl implements IPacienteDao {
 			em.merge(paciente);//merge lo que hace es actualizar lo datos esxistentes
 		}else {
 			em.persist(paciente);
-		}
-		
+		}	
 		
 	}
 
+	
 	@Override
+	@Transactional(readOnly=true)
 	public Paciente findOnePaciente(Long dni_paciente) {
 		
 		return em.find(Paciente.class, dni_paciente);
+	}
+
+	
+	@Override
+	@Transactional
+	public void deletePaciente(Long dni_paciente) {
+		
+		em.remove(findOnePaciente(dni_paciente));
+		
 	}
 
 }

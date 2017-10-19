@@ -19,7 +19,7 @@ import com.bordafederico.springboot.app.models.dao.IPacienteDao;
 import com.bordafederico.springboot.app.models.entity.Paciente;
 
 @Controller   //marcamos asi que la clase es de tipo controlador
-@SessionAttributes("paciente")
+@SessionAttributes("paciente") //al implementar esto lo que hace es que guardar el objeto paciente en la session hasta que el mismo persista completamente en la bd
 public class PacienteController {
 	
 	@Autowired  //busca un componente registrado en el contenedor registrado como PacienteDao
@@ -64,7 +64,7 @@ public class PacienteController {
 	}
 	
 	
-	//METODO QUE REALIZA LA PARTE DEL POST DE LA CREACION DEL PACIENTE PERSISITIENDO EL MISMO EN LA BD
+	//METODO QUE REALIZA LA PARTE DEL POST DE LA CREACION DEL PACIENTE PERSISTIENDO EL MISMO EN LA BD
 	@RequestMapping(value="/formpaciente", method=RequestMethod.POST)
 	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model, SessionStatus status) {//@valid habilita la validacion en el objeto mapeado al form	
 		
@@ -76,6 +76,17 @@ public class PacienteController {
 		pacienteDao.savePaciente(paciente);	
 		status.setComplete();
 		return "redirect:listar";
+	}
+	
+	
+	//METODO QUE ELIMINA UN PACIENTE DE LA BD
+	@RequestMapping(value="/eliminar/{dni_paciente}")
+	public String eliminarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente){
+		
+		if(dni_paciente > 0) {
+			pacienteDao.deletePaciente(dni_paciente);
+		}
+		return "redirect:/listar";
 	}
 	
 

@@ -30,7 +30,7 @@
 		<h1
 			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
 			th:text="${titulo}"></h1>
-
+  		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -43,6 +43,7 @@
 					<th>Teléfono</th>
 					<th>Email</th>
 					<th>Editar</th>
+					<th>Eliminar</th>
 				</tr>
 			</thead>
 
@@ -57,9 +58,12 @@
 					<td th:text="${paciente.tel_paciente}"></td>
 					<td th:text="${paciente.email_paciente}"></td>
 					<td><a class="btn btn-primary btn-xs" th:href="@{/formpaciente/} + ${paciente.dni_paciente}" th:text="'editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${paciente.dni_paciente}" th:text="'eliminar'" 
+						onclick="return confirm('Estas seguro que deseas eliminar al paciente?');"></a></td>
 				</tr>
 			</tbody>
 		</table>
+		
 	</div>
 	
 	<script th:src="@{/js/jquery.js}"></script>

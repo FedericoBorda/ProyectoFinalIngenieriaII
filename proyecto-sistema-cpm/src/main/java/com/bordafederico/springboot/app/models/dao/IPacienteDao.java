@@ -12,4 +12,6 @@ public interface IPacienteDao {
 
 	public Paciente findOnePaciente(Long dni_paciente); //contrato que retorna un solo paciente por su id (dni_paciente) para poder editarlo
 
+	public void deletePaciente(Long dni_paciente);
+	
 }
