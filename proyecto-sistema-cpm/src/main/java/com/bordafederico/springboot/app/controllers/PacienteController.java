@@ -12,11 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.bordafederico.springboot.app.models.dao.IPacienteDao;
 import com.bordafederico.springboot.app.models.entity.Paciente;
 
 @Controller   //marcamos asi que la clase es de tipo controlador
+@SessionAttributes("paciente")
 public class PacienteController {
 	
 	@Autowired  //busca un componente registrado en el contenedor registrado como PacienteDao
@@ -63,14 +66,15 @@ public class PacienteController {
 	
 	//METODO QUE REALIZA LA PARTE DEL POST DE LA CREACION DEL PACIENTE PERSISITIENDO EL MISMO EN LA BD
 	@RequestMapping(value="/formpaciente", method=RequestMethod.POST)
-	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model) {//@valid habilita la validacion en el objeto mapeado al form	
+	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model, SessionStatus status) {//@valid habilita la validacion en el objeto mapeado al form	
 		
 		if(resultado.hasErrors()) {//si el resultado contiene errores retornamos al formulario
 			model.put("tituloform", "Formulario de Alta de Paciente");
 			return "formpaciente";
 		}
 		
-		pacienteDao.savePaciente(paciente);		
+		pacienteDao.savePaciente(paciente);	
+		status.setComplete();
 		return "redirect:listar";
 	}
 	
