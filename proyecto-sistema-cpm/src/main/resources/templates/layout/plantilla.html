@@ -6,10 +6,13 @@
 <title th:text="'Sistema CPM' + ${titulo}"></title>
 
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/fondopersonalizado.css}" />
 
 </head>
 
 <body>
+	
+
 	<!-- ESTABLECIENDO BARRA SUPERIOR DE NAVEGACION -->
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -81,7 +84,7 @@
 	<footer th:fragment="footer" class="container" >
 		<hr />
 		<img th:src="@{/imagenes/logosistema02.png}" alt="Sistema CPM logo"	height="110px" width="320px" />
-		<p class="text-muted credit">
+		<p class="text-light">
 			Powered by Borda Federico E.
 			<br />
 			Este proyecto fue desarrollado para la asignatura Ingenieria de
