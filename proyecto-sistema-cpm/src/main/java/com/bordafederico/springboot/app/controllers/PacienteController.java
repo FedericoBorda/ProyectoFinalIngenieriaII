@@ -42,7 +42,7 @@ public class PacienteController {
 		
 		Paciente paciente = new Paciente();
 		model.put("paciente", paciente);
-		model.put("tituloform", "Formulario de Alta de Paciente");
+		model.put("titulo", "Formulario de Alta de Paciente");
 		
 		return "formpaciente";
 	}
@@ -60,7 +60,7 @@ public class PacienteController {
 			return "redirect:/listar";
 		}
 		model.put("paciente", paciente);
-		model.put("tituloform", "Editar Paciente");
+		model.put("titulo", "Editar Paciente");
 		
 		return "formpaciente";
 	}
@@ -71,7 +71,7 @@ public class PacienteController {
 	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model, SessionStatus status) {//@valid habilita la validacion en el objeto mapeado al form	
 		
 		if(resultado.hasErrors()) {//si el resultado contiene errores retornamos al formulario
-			model.put("tituloform", "Formulario de Alta de Paciente");
+			model.put("titulo", "Formulario de Alta de Paciente");
 			return "formpaciente";
 		}
 		

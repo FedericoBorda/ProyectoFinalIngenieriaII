@@ -11,7 +11,7 @@ public class IndexController {
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String mostrar(Model model) {		
-		model.addAttribute("pagInicio", "Página de Inicio");
+		model.addAttribute("titulo", "Página de Inicio");
 		model.addAttribute("bienvenido", "Bienvenido");
 		model.addAttribute("sistemacpm", "Sistema Centralizado para Profesionales Médicos");
 		return "index";

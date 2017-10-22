@@ -1,82 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleof.org">
-<head>
-<meta charset="UTF-8" />
-<title th:text="${pagInicio}"></title>
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-
-</head>
+<head th:replace="layout/plantilla :: head"></head>
 
 <body>
 
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">C.P.M.</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse">
-			<ul class="navbar-nav nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="#about" th:href="@{/index}">Inicio</a>
-				</li>				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" role="button">Archivo</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown01">
-              			<a class="dropdown-item" href="#">Mis Datos</a>
-              			<a class="dropdown-item" href="#">Eliminar Cuenta</a>
-              			<a class="dropdown-item" href="#">Salir</a>
-            		</div>
-				</li>					
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" role="button">Pacientes</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown02">
-              			<a class="dropdown-item" href="#">Buscar Paciente</a>
-              			<a class="dropdown-item" href="#about" th:href="@{/listar}">Listar Pacientes</a>
-              			<a class="dropdown-item" href="#about" th:href="@{/formpaciente}">Alta Paciente</a>
-            		</div>
-				</li>				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" role="button">Turnos</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown03">
-              			<a class="dropdown-item" href="#">Buscar un Turno</a>
-              			<a class="dropdown-item" href="#">Sacar un Turno</a>
-              			<a class="dropdown-item" href="#">Mostrar Turnos</a>
-            		</div>
-				</li>	
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" role="button">Nota</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown04">
-              			<a class="dropdown-item" href="#">Crear Nota</a>
-              			<a class="dropdown-item" href="#">Mostrar Notas</a>
-               		</div>
-				</li>				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="dropdown05" data-toggle="dropdown" role="button">Ayuda</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown05">
-              			<a class="dropdown-item" href="#">Información</a>
-            		</div>
-				</li>	
-			</ul>
-		</div>	
-	</nav>
-	
-	
-
-	<div class="container">
-		<h1 class="text-secondary text-center" th:text="${bienvenido}"></h1>
-		<h1
-			class="text-secondary text-center border border-success border-top-0 border-left-0 border-right-0"
-			th:text="${sistemacpm}"></h1>
+	<header th:replace="layout/plantilla :: header"></header>
 
 
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header">
+				<h3>
+					<strong th:text="${bienvenido}"></strong>
+				</h3>
+				<h4>
+					<strong th:text="${sistemacpm}"></strong>
+				</h4>
+			</div>
+			<div class="card-body"></div>
+
+		</div>
 	</div>
-	
-	<script th:src="@{/js/jquery.js}"></script>
-	<script th:src="@{/js/jquery-slim.min.js}"></script>
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>	
-	
-	
+
+
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+
+
 </body>
 </html>
