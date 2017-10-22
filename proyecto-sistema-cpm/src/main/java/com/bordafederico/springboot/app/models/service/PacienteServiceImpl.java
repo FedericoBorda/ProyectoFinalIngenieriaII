@@ -24,18 +24,18 @@ public class PacienteServiceImpl implements IPacienteService{
 
 	
 	@Override
-	@Transactional //aca no ponemos el readOnly ya que es de escritura para insertar un nuevo registro
-	public void savePaciente(Paciente paciente) {		
-		pacienteDao.savePaciente(paciente);		
-	}
-	
-
-	@Override
 	@Transactional(readOnly=true)
 	public Paciente findOnePaciente(Long dni_paciente) {		
 		return pacienteDao.findOnePaciente(dni_paciente);
 	}
 	
+	
+	@Override
+	@Transactional //aca no ponemos el readOnly ya que es de escritura para insertar un nuevo registro
+	public void savePaciente(Paciente paciente) {		
+		pacienteDao.savePaciente(paciente);		
+	}
+		
 
 	@Override
 	@Transactional

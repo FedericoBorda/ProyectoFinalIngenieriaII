@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bordafederico.springboot.app.models.entity.Paciente;
 import com.bordafederico.springboot.app.models.service.IPacienteService;
@@ -50,13 +50,18 @@ public class PacienteController {
 	
 	//METODO QUE PERMITE EDITAR UN PACIENTE
 	@RequestMapping(value="/formpaciente/{dni_paciente}")
-	public String editarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente, Map<String, Object> model) {
+	public String editarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente, Map<String, Object> model, RedirectAttributes flash) {
 		
 		Paciente paciente = null;
 		
 		if(dni_paciente > 0) {
 			paciente = pacienteService.findOnePaciente(dni_paciente);
+			if(paciente == null) {
+				flash.addFlashAttribute("error", "El Paciente no existe en la Base de Datos");
+				return "redirect:/listar";
+			}
 		}else {
+			flash.addFlashAttribute("error", "El DNI del paciente no puede ser 0 o menor que 0");
 			return "redirect:/listar";
 		}
 		model.put("paciente", paciente);
@@ -68,25 +73,33 @@ public class PacienteController {
 	
 	//METODO QUE REALIZA LA PARTE DEL POST DE LA CREACION DEL PACIENTE PERSISTIENDO EL MISMO EN LA BD
 	@RequestMapping(value="/formpaciente", method=RequestMethod.POST)
-	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Map<String, Object> model, SessionStatus status) {//@valid habilita la validacion en el objeto mapeado al form	
+	public String guardarPaciente(@Valid Paciente paciente, BindingResult resultado, Model model, RedirectAttributes flash, SessionStatus status) {//@valid habilita la validacion en el objeto mapeado al form	
 		
 		if(resultado.hasErrors()) {//si el resultado contiene errores retornamos al formulario
-			model.put("titulo", "Formulario de Alta de Paciente");
+			model.addAttribute("titulo", "Formulario de Alta de Paciente");
 			return "formpaciente";
 		}
 		
+		
+		//aca guardo en el mensajeFlash el resultado de la pregunta, si es distinto de null guardo "paciente editado con exito", sino guardo lo otro
+		//System.out.println("A paciente= " + paciente.getDni_paciente());
+		String mensajeFlash = (paciente.getDni_paciente() != null)? "Paciente guardado con éxito!!" : "Paciente creado con éxito!!";
+		//System.out.println("B paciente= " + paciente.getDni_paciente() + " " + mensajeFlash);
+		
 		pacienteService.savePaciente(paciente);	
 		status.setComplete();
+		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:listar";
 	}
 	
 	
 	//METODO QUE ELIMINA UN PACIENTE DE LA BD
 	@RequestMapping(value="/eliminar/{dni_paciente}")
-	public String eliminarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente){
+	public String eliminarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente, RedirectAttributes flash){
 		
 		if(dni_paciente > 0) {
 			pacienteService.deletePaciente(dni_paciente);
+			flash.addFlashAttribute("success", "Paciente eliminado con éxito!!");
 		}
 		return "redirect:/listar";
 	}

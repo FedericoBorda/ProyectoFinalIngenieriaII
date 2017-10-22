@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.bordafederico.springboot.app.models.entity.Paciente;
 
-@Repository("pacienteDaoJPA")
+//@Repository("pacienteDaoJPA")
+@Repository()
 public class PacienteDaoImpl implements IPacienteDao {
 	
 	@PersistenceContext
@@ -22,23 +23,27 @@ public class PacienteDaoImpl implements IPacienteDao {
 	}
 	
 
-	@Override
-	public void savePaciente(Paciente paciente) {
-		if(paciente.getDni_paciente() != null && paciente.getDni_paciente() > 0) {
-			System.out.println("DNI " + paciente.getDni_paciente());
-			em.merge(paciente);//merge lo que hace es actualizar lo datos esxistentes
-		}else {
-			em.persist(paciente);
-		}	
-		
-	}
-
 	
 	@Override	
 	public Paciente findOnePaciente(Long dni_paciente) {
 		
 		return em.find(Paciente.class, dni_paciente);
 	}
+	
+	@Override
+	public void savePaciente(Paciente paciente) {
+		
+		//System.out.println("savePaciente PacienteDaoImp antes del if " + paciente.getDni_paciente());
+		if(paciente.getDni_paciente() != null && paciente.getDni_paciente() > 0) {
+			em.merge(paciente);//merge lo que hace es actualizar lo datos esxistentes
+			//System.out.println("savePaciente PacienteDaoImp despues de merge " + paciente.getDni_paciente());
+		}else {
+			em.persist(paciente);
+			//System.out.println("savePaciente PacienteDaoImp despues de persist " + paciente.getDni_paciente());
+		}	
+		
+	}
+	
 
 	
 	@Override	
