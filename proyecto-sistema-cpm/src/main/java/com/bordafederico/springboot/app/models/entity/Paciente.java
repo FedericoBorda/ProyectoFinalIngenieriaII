@@ -1,10 +1,16 @@
 package com.bordafederico.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,8 +54,20 @@ public class Paciente implements Serializable {
 	@Email
 	private String email_paciente;
 	
+	//con ManyToOne digo que la relacion con plan es: muchos paciente en un plan 
+	//el fetch es el tipo de carga, LAZY hace referencia a carga perezosa, significa que se van cargando los metodos a medida que se van necesitando
+	@ManyToOne(fetch=FetchType.LAZY) 
+	private Plan plan;
+	
+	//private ObraSocial obra_social;
+	
+	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY, cascade=CascadeType.ALL) 
+	private List<TurnoConsulta> turnosConsulta_x_paciente;
 	
 	
+	public Paciente() {
+		turnosConsulta_x_paciente =  new ArrayList<TurnoConsulta>();
+	}
 	public Long getDni_paciente() {
 		return dni_paciente;
 	}
@@ -97,6 +115,23 @@ public class Paciente implements Serializable {
 	}
 	public void setEmail_paciente(String email_paciente) {
 		this.email_paciente = email_paciente;
+	}
+	
+	
+	
+	public Plan getPlan() {
+		return plan;
+	}
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+	
+	
+	public List<TurnoConsulta> getTurnosConsulta_x_paciente() {
+		return turnosConsulta_x_paciente;
+	}
+	public void setTurnosConsulta_x_paciente(List<TurnoConsulta> turnosConsulta_x_paciente) {
+		this.turnosConsulta_x_paciente = turnosConsulta_x_paciente;
 	}
 	
 	

@@ -4,15 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
-//@Entity
-//@Table(name="nota")
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name="nota")
 public class Nota implements Serializable{
 
 	
@@ -22,11 +27,19 @@ public class Nota implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_nota;
 	
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date fecha_nota;
 	
+	@NotEmpty
 	private String nombre_nota;
+	
+	@NotEmpty
 	private String contenido_nota;
+	
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Medico medico_nota;
 	
 	
 	
@@ -53,6 +66,15 @@ public class Nota implements Serializable{
 	}
 	public void setContenido_nota(String contenido_nota) {
 		this.contenido_nota = contenido_nota;
+	}
+	
+	
+	
+	public Medico getMedico_nota() {
+		return medico_nota;
+	}
+	public void setMedico_nota(Medico medico_nota) {
+		this.medico_nota = medico_nota;
 	}
 	
 	

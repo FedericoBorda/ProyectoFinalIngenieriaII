@@ -1,15 +1,24 @@
 package com.bordafederico.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name="plan")
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name="plan")
 public class Plan implements Serializable {
 
 	
@@ -20,11 +29,30 @@ public class Plan implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_plan;
 	
-	
+	@NotEmpty
 	private String tipo_plan;
+	
+	@NotEmpty
 	private String descripcion_plan;
 	
 	
+	//relacion con obra social donde digo que mucos planes pertenecen a una obra social
+	@ManyToOne(fetch=FetchType.LAZY)
+	private ObraSocial obra_social;
+	
+	//con OneToMany digo que la relacion con paciente es: un plan con muchos pacientes 
+	//el fetch es el tipo de carga, LAZY hace referencia a carga perezosa
+	//cascade=CascadeType.ALL hace referencia que toda las operaciones como delete o persist se van a realizar en cadena
+	//Con mappedBy lo que hacemos es que sea bidireccional o sea 
+	//"plan va a tener una lista de "pacientes_x_plan", pero si nos vamos a paciente, paciente va a tener un plan
+	@OneToMany(mappedBy="plan", fetch=FetchType.LAZY, cascade=CascadeType.ALL) 
+	//@JoinColumn(name="id_plan")
+	private List<Paciente> pacientes_x_plan;  //el plan va a tener una lista de pacientes
+	
+	
+	public Plan() {//aca inicializamos por medio del contructor el arrayList
+		pacientes_x_plan =  new ArrayList<Paciente>();  
+	}
 	
 	
 	public Long getId_plan() {
@@ -45,7 +73,25 @@ public class Plan implements Serializable {
 	public void setDescripcion_plan(String descripcion_plan) {
 		this.descripcion_plan = descripcion_plan;
 	}
+	public ObraSocial getObra_social() {
+		return obra_social;
+	}
+	public void setObra_social(ObraSocial obra_social) {
+		this.obra_social = obra_social;
+	}
+		
 	
+	public List<Paciente> getPacientes_x_plan() {
+		return pacientes_x_plan;
+	}
+	public void setPacientes_x_plan(List<Paciente> pacientes_x_plan) {
+		this.pacientes_x_plan = pacientes_x_plan;
+	}
+	
+	
+	public void addPacientealPlan(Paciente paciente) {//en este metodo guarda de a un paciente 
+		pacientes_x_plan.add(paciente);
+	}
 	
 	
 
