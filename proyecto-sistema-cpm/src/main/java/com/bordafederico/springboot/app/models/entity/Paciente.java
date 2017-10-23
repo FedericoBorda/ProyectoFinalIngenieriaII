@@ -135,8 +135,10 @@ public class Paciente implements Serializable {
 	}
 	
 	
+	public void addTurnoConsulta_a_Paciente(TurnoConsulta turnoConsulta) {
+		turnosConsulta_x_paciente.add(turnoConsulta);
 	
-	
+	}
 	
 	
 	

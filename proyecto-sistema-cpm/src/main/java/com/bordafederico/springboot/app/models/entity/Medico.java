@@ -130,7 +130,18 @@ public class Medico implements Serializable {
 	} 
 	
 	
-	
+	public void addTurnoConsulta_a_Medico(TurnoConsulta turnoConsulta) {
+		turnosConsulta_x_medico.add(turnoConsulta);
+		
+	}
+	public void addEspecialidad_a_Medico(Especialidad especialidad) {
+		especialidades_x_medico.add(especialidad);
+		
+	}
+	public void addNota_a_Medico(Nota nota) {
+		notas_x_medico.add(nota);
+		
+	}
 	
 	
 	
