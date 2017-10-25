@@ -26,6 +26,8 @@
 								<th>Direccion</th>
 								<th>Telefono</th>
 								<th>Email</th>
+								<th>Obra Social</th>
+								<th>Plan</th>
 								<th>Editar</th>
 								<th>Eliminar</th>
 							</tr>
@@ -41,6 +43,8 @@
 								<td th:text="${paciente.direccion_paciente}"></td>
 								<td th:text="${paciente.tel_paciente}"></td>
 								<td th:text="${paciente.email_paciente}"></td>
+								<td ></td>
+								<td ></td>
 								<td><a class="btn btn-primary btn-xs"
 									th:href="@{/formpaciente/} + ${paciente.dni_paciente}"
 									th:text="'editar'"></a></td>

@@ -78,9 +78,17 @@ public class GrupoFuncion {
 	}
 	
 	
-	//public void addGfAlGfr(GrupoFuncion grupofuncion) {
-	//	gf_x_gfr.add(grupofuncion);
-	//}
+	//este metodo lo que hace es agregar un grupo de funcion x rol al grupo de funcion 
+	//loagregaria al lis de grupofuncionxrol que esta en esta clase
+	public void addGfrAlGf(GrupoFuncionxRol grupofuncionxrol) {
+		gf_x_gfr.add(grupofuncionxrol);
+	}
+	
+	//este metodo lo que hace es agregar una funcion al grupo de funcion
+	//lo afregaria al list de funcion que esta clase
+	public void addmetodo(Funcion funcion) {
+		 funcion_x_grupofuncion.add(funcion);
+	}
 
 
 

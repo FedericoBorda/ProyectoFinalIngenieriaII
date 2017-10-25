@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+
+<head th:replace="layout/plantilla :: head"></head>
+
+<body id="mifondo">
+
+	<header th:replace="layout/plantilla :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header">
+				<h4><strong th:text="${titulo}"></strong></h4>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover">
+						<thead class="thead-inverse">
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Direccion</th>
+								<th>Editar</th>
+								<th>Eliminar</th>								
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="obrasocial: ${obrasociales}">
+								<td th:text="${obrasocial.id_obra_social}"></td>
+								<td th:text="${obrasocial.nombre_obra_social}"></td>
+								<td th:text="${obrasocial.direccion_obra_social}"></td>
+								<td><a class="btn btn-primary btn-xs"
+									th:href="@{/formobrasocial/} + ${obrasocial.id_obra_social}"
+									th:text="'editar'"></a></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{/eliminaros/} + ${obrasocial.id_obra_social}"
+									th:text="'eliminar'"
+									onclick="return confirm('Estas seguro que deseas eliminar una Obra Social?');"></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

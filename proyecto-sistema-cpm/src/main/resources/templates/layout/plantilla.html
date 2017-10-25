@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	
+
 
 	<!-- ESTABLECIENDO BARRA SUPERIOR DE NAVEGACION -->
 	<header th:fragment="header">
@@ -52,13 +52,21 @@
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="dropdown04"
+						data-toggle="dropdown" role="button">Obra Social</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown03">
+							<a class="dropdown-item" href="#">Buscar O.Social</a> <a
+								class="dropdown-item" th:href="@{/listarobrasocial}">Listar O.Social</a> <a
+								class="dropdown-item" th:href="@{/formobrasocial}">Alta O.Social</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="dropdown05"
 						data-toggle="dropdown" role="button">Nota</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="#">Crear Nota</a> <a
 								class="dropdown-item" href="#">Mostrar Notas</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="dropdown05"
+						class="nav-link dropdown-toggle" id="dropdown06"
 						data-toggle="dropdown" role="button">Ayuda</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown05">
 							<a class="dropdown-item" href="#">Información</a>
@@ -66,14 +74,18 @@
 				</ul>
 			</div>
 		</nav>
-		
-		
+
+
 		<!-- ESTABLECIENDO MENSAJES FLASH -->
-		<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
-		<div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
-		<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
-		<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
-		
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+
 	</header>
 
 
@@ -81,17 +93,14 @@
 
 
 	<!-- ESTABLECIENDO PIE DE PAGINA -->
-	<footer th:fragment="footer" class="container" >
+	<footer th:fragment="footer" class="container">
 		<hr />
-		<img th:src="@{/imagenes/logosistema02.png}" alt="Sistema CPM logo"	height="110px" width="320px" />
+		<img th:src="@{/imagenes/logosistema02.png}" alt="Sistema CPM logo"
+			height="110px" width="320px" />
 		<p class="text-light">
-			Powered by Borda Federico E.
-			<br />
-			Este proyecto fue desarrollado para la asignatura Ingenieria de
-			Software II 
-			<br /> 
-			Carrera: Analista Universitario en Sistemas.
-			<br />
+			Powered by Borda Federico E. <br /> Este proyecto fue desarrollado
+			para la asignatura Ingenieria de Software II <br /> Carrera:
+			Analista Universitario en Sistemas. <br />
 		</p>
 
 		<script th:src="@{/js/jquery.js}"></script>
