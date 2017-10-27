@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+
+<head th:replace="layout/plantilla :: head"></head>
+
+<body id="mifondo">
+
+	<header th:replace="layout/plantilla :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header">
+				<h4><strong th:text="${titulo}"></strong></h4>
+			</div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{'/plan/formplan/' + ${obrasocial.id_obra_social}}" class="btn btn-success btn-xs">crear
+						Plan</a>
+				</h4>
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover">
+						<thead class="thead-inverse">
+							<tr>
+								<th>Id Plan</th>
+								<th>Nombre</th>
+								<th>Descripcion</th>
+								<th>Editar</th>
+								<th>Eliminar</th>								
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="plan: ${obrasocial.planes_x_obrasocial}">
+								<td th:text="${plan.id_plan}"></td>
+								<td th:text="${plan.tipo_plan}"></td>
+								<td th:text="${plan.descripcion_plan}"></td>
+								 <td><a class="btn btn-primary btn-xs"
+									th:href="@{'/plan/formplan/'  + ${obrasocial.id_obra_social} + '/' + ${plan.id_plan}}"
+									th:text="'editar'"></a></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{'/plan/eliminarplan/' + ${plan.id_plan}}"
+									th:text="'eliminar'"
+									onclick="return confirm('Estas seguro que deseas eliminar este Plan?');"></a></td>								
+								<!--  <td><a class="btn btn-primary btn-xs"
+									th:href="@{'/plan/formplan/' + } + ${plan.id_plan}"
+									th:text="'editar'"></a></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{'/plan/eliminarplan/'} + ${plan.id_plan}"
+									th:text="'eliminar'"
+									onclick="return confirm('Estas seguro que deseas eliminar este Plan?');"></a></td>-->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

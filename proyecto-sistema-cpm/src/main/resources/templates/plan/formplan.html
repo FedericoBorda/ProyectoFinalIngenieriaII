@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+<head th:replace="layout/plantilla :: head"></head>
+
+<body id="mifondo">
+
+	<header th:replace="layout/plantilla :: header"></header>
+
+
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header">
+				<h4>
+					<strong th:text="${titulo}"></strong>
+				</h4>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/plan/formplan}" th:object="${plan}"
+					method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Obra Social</label>
+						<div class="col-sm-6">
+							 <input th:value="${plan.obra_social.nombre_obra_social}"
+								class="form-control" disabled="disabled" />
+							<!-- ACORDARSE QUE ${plan.obra_social.nombre_obra_social} HACE EL GET DEL PLAN DEL CAMPO
+							obra_social declarada en la entidad plan y de ahi hace el get de nombre_obra_social que esta declarada
+							en la entidad obra social -->
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombre Plan</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{tipo_plan}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('tipo_plan')}"
+								th:errors="*tipo_plan}"></small>
+
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Descripcion Plan</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{descripcion_plan}"
+								class="form-control" th:errorclass="'form-control alert-danger'" />
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('descripcion_plan')}"
+								th:errors="*{descripcion_plan}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Crear Plan" class="btn btn-primary" />
+						</div>
+					</div>
+					<input type="hidden" th:field="*{id_plan}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

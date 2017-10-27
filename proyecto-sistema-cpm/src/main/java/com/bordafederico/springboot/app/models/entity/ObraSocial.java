@@ -40,7 +40,7 @@ public class ObraSocial implements Serializable{
 	
 	
 	public ObraSocial() {//aca inicializamos por medio del contructor el arrayList
-		planes_x_obrasocial =  new ArrayList<Plan>();  
+		this.planes_x_obrasocial =  new ArrayList<Plan>();  
 	}
 	
 	

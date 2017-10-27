@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,11 +21,29 @@ import com.bordafederico.springboot.app.models.service.IObraSocialService;
 
 
 @Controller
-@SessionAttributes("obra_social")
+@SessionAttributes("obrasocial")
 public class ObraSocialController {
 	
 	@Autowired
 	private IObraSocialService obraSocialService;
+	
+	
+	//METODO PARA VER EL DETALLE DE LA OBRA SOCIAL
+	@GetMapping(value="/detalleobrasocial/{id_obra_social}")
+	public String verDetalle(@PathVariable(value="id_obra_social") Long id_obra_social, Map<String, Object> model, RedirectAttributes flash) {
+		
+		ObraSocial obrasocial =  obraSocialService.findOneOSocial(id_obra_social);
+		if(obrasocial == null) {
+			flash.addFlashAttribute("error", "La Obra Social no exite en la Base de Datos");
+			return "redirect:/listarobrasocial";
+		}
+		
+		model.put("obrasocial", obrasocial);
+		model.put("titulo", "Plan/es de Obra Social " + obrasocial.getNombre_obra_social());
+		
+		return "detalleobrasocial";
+	}
+	
 	
 	
 	@RequestMapping(value="/listarobrasocial", method=RequestMethod.GET)
@@ -76,7 +95,7 @@ public class ObraSocialController {
 			return "formobrasocial";
 		}
 		
-		String mensajeFlash = (obrasocial.getId_obra_social() != null)? "Obra Social guardada con éxito!!" : "Obra Social creado con éxito!!";
+		String mensajeFlash = (obrasocial.getId_obra_social() != null)? "Obra Social editada con éxito!!" : "Obra Social creado con éxito!!";
 				
 		obraSocialService.saveOSocial(obrasocial);	
 		status.setComplete();

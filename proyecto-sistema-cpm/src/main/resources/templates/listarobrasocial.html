@@ -21,6 +21,7 @@
 								<th>Id</th>
 								<th>Nombre</th>
 								<th>Direccion</th>
+								<th>Plan/es</th>
 								<th>Editar</th>
 								<th>Eliminar</th>								
 							</tr>
@@ -31,6 +32,9 @@
 								<td th:text="${obrasocial.id_obra_social}"></td>
 								<td th:text="${obrasocial.nombre_obra_social}"></td>
 								<td th:text="${obrasocial.direccion_obra_social}"></td>
+								<td><a class="btn btn-info btn-xs"
+									th:href="@{/detalleobrasocial/} + ${obrasocial.id_obra_social}"
+									th:text="'ver Plan/es'"></a></td>
 								<td><a class="btn btn-primary btn-xs"
 									th:href="@{/formobrasocial/} + ${obrasocial.id_obra_social}"
 									th:text="'editar'"></a></td>
