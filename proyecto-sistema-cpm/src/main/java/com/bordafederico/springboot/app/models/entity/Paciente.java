@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -56,7 +57,8 @@ public class Paciente implements Serializable {
 	
 	//con ManyToOne digo que la relacion con plan es: muchos paciente en un plan 
 	//el fetch es el tipo de carga, LAZY hace referencia a carga perezosa, significa que se van cargando los metodos a medida que se van necesitando
-	@ManyToOne(fetch=FetchType.LAZY) 
+	@ManyToOne(fetch=FetchType.LAZY) //, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
+	@JoinColumn(name="id_plan")
 	private Plan plan;
 	
 	//private ObraSocial obra_social;

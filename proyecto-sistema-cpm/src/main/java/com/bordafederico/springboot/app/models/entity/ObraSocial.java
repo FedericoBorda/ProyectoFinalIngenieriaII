@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -34,8 +35,7 @@ public class ObraSocial implements Serializable{
 	private String direccion_obra_social;
 	
 	//relacion en la que digo que una obra social tiene muchos planes, por lo tanto es un list de planes
-	@OneToMany(mappedBy="obra_social", fetch=FetchType.LAZY, cascade=CascadeType.ALL) 
-	//@JoinColumn(name="id_obra_social")
+	@OneToMany(mappedBy="obra_social", fetch=FetchType.LAZY	, cascade=CascadeType.ALL) //, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
 	private List<Plan> planes_x_obrasocial;
 	
 	

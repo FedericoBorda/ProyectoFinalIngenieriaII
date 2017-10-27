@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -48,9 +49,11 @@ public class TurnoConsulta implements Serializable{
 	private String descripcion_turno_consulta;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="dni_paciente")
 	private Paciente paciente;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="nro_matricula")
 	private Medico medico;
 	
 	@OneToMany(mappedBy="turnoConsulta", fetch=FetchType.LAZY, cascade=CascadeType.ALL) 
@@ -94,12 +97,12 @@ public class TurnoConsulta implements Serializable{
 	}
 	
 	
-	public Paciente getPaciente() {
-		return paciente;
-	}
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
+	//public Paciente getPaciente() {
+	//	return paciente;
+	//}
+	//public void setPaciente(Paciente paciente) {
+	//	this.paciente = paciente;
+	//}
 	public Medico getMedico() {
 		return medico;
 	}
