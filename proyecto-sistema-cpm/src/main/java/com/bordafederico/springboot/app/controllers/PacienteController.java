@@ -58,7 +58,7 @@ public class PacienteController {
 		Paciente paciente = new Paciente();
 		model.put("paciente", paciente);
 		model.put("obrasociales",obraSocialService.findAll());
-		model.put("obrasPlanesForm", new ObrasPlanesForm());
+		//model.put("obrasPlanesForm", new ObrasPlanesForm());
 		model.put("planes", planService.findAll());
 		model.put("titulo", "Formulario de Alta de Paciente");
 		
@@ -139,10 +139,10 @@ public class PacienteController {
 	//}
 	
 	
-	@RequestMapping(value="/cascada", method=RequestMethod.POST)
-	public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
-		return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
-	}
+	//@RequestMapping(value="/cascada", method=RequestMethod.POST)
+	//public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
+	//	return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
+	//}
 	
 	
 	
