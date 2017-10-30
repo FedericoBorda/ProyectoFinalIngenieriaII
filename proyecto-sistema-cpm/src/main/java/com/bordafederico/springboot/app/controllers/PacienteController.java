@@ -1,5 +1,8 @@
 package com.bordafederico.springboot.app.controllers;
 
+
+
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -10,14 +13,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bordafederico.springboot.app.models.entity.ObrasPlanesForm;
 import com.bordafederico.springboot.app.models.entity.Paciente;
+import com.bordafederico.springboot.app.models.entity.Plan;
+import com.bordafederico.springboot.app.models.service.IObraSocialService;
 import com.bordafederico.springboot.app.models.service.IPacienteService;
+import com.bordafederico.springboot.app.models.service.IPlanService;
 
 @Controller   //marcamos asi que la clase es de tipo controlador
 @SessionAttributes("paciente") //al implementar esto lo que hace es que guardar el objeto paciente en la session hasta que el mismo persista completamente en la bd
@@ -27,6 +36,12 @@ public class PacienteController {
 	//@Qualifier("pacienteDaoJPA")
 	private IPacienteService pacienteService;
 	//private IPacienteDao pacienteDao; lo comentamos porque ahora usamos el Service
+	
+	@Autowired
+	private IObraSocialService obraSocialService;
+	
+	@Autowired
+	private IPlanService planService;
 	
 	//METODO QUE LISTA LOS PACIENTE
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
@@ -42,6 +57,9 @@ public class PacienteController {
 		
 		Paciente paciente = new Paciente();
 		model.put("paciente", paciente);
+		model.put("obrasociales",obraSocialService.findAll());
+		model.put("obrasPlanesForm", new ObrasPlanesForm());
+		model.put("planes", planService.findAll());
 		model.put("titulo", "Formulario de Alta de Paciente");
 		
 		return "formpaciente";
@@ -53,9 +71,14 @@ public class PacienteController {
 	public String editarPaciente(@PathVariable(value="dni_paciente") Long dni_paciente, Map<String, Object> model, RedirectAttributes flash) {
 		
 		Paciente paciente = null;
+		//ObraSocial obrasocial= null;
+		
+		
 		
 		if(dni_paciente > 0) {
 			paciente = pacienteService.findOnePaciente(dni_paciente);
+			
+			//System.out.println("paciente es: " + pacienteService.findOnePaciente(dni_paciente).getPlan().getObra_social().getNombre_obra_social());
 			if(paciente == null) {
 				flash.addFlashAttribute("error", "El Paciente no existe en la Base de Datos");
 				return "redirect:/listar";
@@ -65,6 +88,8 @@ public class PacienteController {
 			return "redirect:/listar";
 		}
 		model.put("paciente", paciente);
+		model.put("obrasociales",obraSocialService.findAll());
+		model.put("planes", planService.findAll());//obrasocial.getPlanes_x_obrasocial()
 		model.put("titulo", "Editar Paciente");
 		
 		return "formpaciente";
@@ -77,6 +102,7 @@ public class PacienteController {
 		
 		if(resultado.hasErrors()) {//si el resultado contiene errores retornamos al formulario
 			model.addAttribute("titulo", "Formulario de Alta de Paciente");
+			
 			return "formpaciente";
 		}
 		
@@ -104,5 +130,22 @@ public class PacienteController {
 		return "redirect:/listar";
 	}
 	
-
+	
+	//@RequestMapping
+	//public Model listarObrasSociales(Model model) {
+		//model.addAttribute("obrasociales", obraSocialService.findAll());
+		//model.addAttribute("obrasPlanesForm", new ObrasPlanesForm());
+		//return model;
+	//}
+	
+	
+	@RequestMapping(value="/cascada", method=RequestMethod.POST)
+	public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
+		return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
+	}
+	
+	
+	
+	
+	
 }

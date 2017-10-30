@@ -16,8 +16,8 @@
 				</h4>
 			</div>
 			<div class="card-body">
-				<form th:action="@{/formpaciente}" th:object="${paciente}"
-					method="post">
+				<form th:modelAttribute="obrasPlanesForm" th:action="@{/formpaciente}" th:object="${paciente}"
+					method="post" >
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">DNI</label>
 						<div class="col-sm-6">
@@ -99,17 +99,30 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Obra Social</label>
+						<label  for="obrasocial" th:path="obrasocial" class="col-sm-2 col-form-label">Obra Social</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{email_paciente}"
-								class="form-control" th:errorclass="'form-control alert-danger'" disabled="disabled"/>
+							<select  onchange="javascript:cargarPlanes()" th:path="obrasocial" class="form-control">
+								  <!--<option th:items="${obrasociales}" th:itemLabel="nombre_obra_social"
+											th:itemValue="id_obra_social"></option>-->
+								
+								<option th:each= "obrasocial: ${obrasociales}"
+										th:value="${obrasocial.id_obra_social}"
+										th:text="${obrasocial.nombre_obra_social}"></option>								
+							</select>
+							
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Plan</label>
+						<label for="plan" th:path="plan" class="col-sm-2 col-form-label">Plan</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{email_paciente}"
-								class="form-control" th:errorclass="'form-control alert-danger'" disabled="disabled"/>
+							<select th:path="plan" class="form-control">
+								
+								<option th:each= "plan: ${planes}"
+										th:value="${plan.id_plan}"
+										th:text="${plan.tipo_plan}"></option> 
+									<!-- ${obrasocial.planes_x_obrasocial} -->							
+							</select>						
+							
 						</div>
 					</div>
 					<div class="form-group row">
@@ -123,6 +136,41 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		//function cargarPlanes() {
+			
+			/*$.ajax({type : "post",
+						url : "cascada",
+						data : JSON.stringify({
+							obrasocial : $('#obrasocial').val(),
+						}),
+						dataType : 'json',
+						contentType : "application/json; charset=utf-8",
+						success : function(dataJson) {
+							$("select[name=plan]").empty();
+							$("select[name=plan]")
+									.append("<option value=''>Seleccione un plan --></option>");
+							$.each(dataJson, function(index, item) {
+								$("select[name=plan]").append(
+										"<option value=" + item.id_plan + ">" + item.tipo_plan
+												+ "</option>");
+							});
+
+						},
+						error : function(e) {
+							console.log(e);
+						},
+					});
+
+			return false;*/
+			//return alert("hola ");
+		}
+	</script>
+	
 	<footer th:replace="layout/plantilla :: footer"></footer>
+	
+	
+	
 </body>
 </html>

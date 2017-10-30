@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+<head th:replace="layout/plantilla :: head"></head>
+
+<body id="mifondo">
+
+	<!-- <header th:replace="layout/plantilla :: header"></header> -->
+
+
+	<div class="container py-5">
+
+
+		<form class="form-signin" action="#" th:action="@{/logincheck}"
+			th:object="${userCredentials}" method="post">
+			<div class="card-header">
+			<div class="py-4">
+				<h3 class=" text-center text-light form-signin-heading">
+					<strong>Ingreso al Sistema</strong>
+				</h3>
+				<h4 class=" text-center text-light form-signin-heading">
+					<strong>Sistema Centralizado para Profesionales Medicos</strong>
+				</h4>
+			</div>
+			</div>
+			<div class="py-2">
+				<label for="inputEmail" class="sr-only">Usuario</label> 
+					<input type="text" id="inputUsername" class="form-control" placeholder="Usuario=user" th:field="*{username}" />
+				<label for="inputPassword" class="sr-only">Contraseña</label> 
+					<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña=user" th:field="*{password}" />
+			</div>
+			
+			<div th:if="${error != null}" class="alert alert-danger" role="alert">usuario
+				o password invalido</div>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">
+				<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Acceder
+			</button>
+		</form>
+
+	</div>
+
+
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+
+
+</body>
+</html>
