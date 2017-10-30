@@ -139,10 +139,10 @@ public class PacienteController {
 	//}
 	
 	
-	//@RequestMapping(value="/cascada", method=RequestMethod.POST)
-	//public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
-	//	return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
-	//}
+	@RequestMapping(value="/cascada", method=RequestMethod.POST)
+	public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
+		return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
+	}
 	
 	
 	

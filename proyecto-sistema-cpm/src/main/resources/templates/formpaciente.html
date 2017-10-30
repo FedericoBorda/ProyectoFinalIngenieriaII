@@ -16,8 +16,8 @@
 				</h4>
 			</div>
 			<div class="card-body">
-			<!-- th:modelAttribute="obrasPlanesForm" -->
-				<form th:action="@{/formpaciente}" th:object="${paciente}"
+			<!-- aca puse el modelAtribute como en el ejemplo -->
+				<form th:modelAttribute="obrasPlanesForm" th:action="@{/formpaciente}" th:object="${paciente}"
 					method="post" >
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">DNI</label>
@@ -99,12 +99,12 @@
 								th:errors="*{email_paciente}"></small>
 						</div>
 					</div>
-					<!--for="obrasocial" th:path="obrasocial"   -->
+				
 					<div class="form-group row">
-						<label  class="col-sm-2 col-form-label">Obra Social</label>
+						<label for="obrasocial" th:path="obrasocial" class="col-sm-2 col-form-label">Obra Social</label>
 						<div class="col-sm-6">
-							<!--  onchange="javascript:cargarPlanes()" th:path="obrasocial"  -->
-							<select th:field="*{plan.obra_social}" class="form-control">
+							
+							<select onchange="javascript:cargarPlanes()" th:path="obrasocial" th:field="*{plan.obra_social}" class="form-control">
 								  <!--<option th:items="${obrasociales}" th:itemLabel="nombre_obra_social"
 											th:itemValue="id_obra_social"></option>-->
 								
@@ -115,9 +115,9 @@
 							
 						</div>
 					</div>
-					<!-- for="plan" th:path="plan"  -->
+					
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Plan</label>
+						<label for="plan" th:path="plan" class="col-sm-2 col-form-label">Plan</label>
 						<div class="col-sm-6">
 							<select th:field="*{plan}" class="form-control">
 								
