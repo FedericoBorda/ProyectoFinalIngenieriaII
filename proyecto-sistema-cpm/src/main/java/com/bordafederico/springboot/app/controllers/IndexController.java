@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 	
-	
+	//hola
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String mostrar(Model model) {		
 		model.addAttribute("titulo", "Página de Inicio");
