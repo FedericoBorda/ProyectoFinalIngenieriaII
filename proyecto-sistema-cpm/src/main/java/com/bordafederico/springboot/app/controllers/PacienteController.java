@@ -13,20 +13,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bordafederico.springboot.app.models.entity.ObrasPlanesForm;
+
 import com.bordafederico.springboot.app.models.entity.Paciente;
 import com.bordafederico.springboot.app.models.entity.Plan;
 import com.bordafederico.springboot.app.models.service.IObraSocialService;
 import com.bordafederico.springboot.app.models.service.IPacienteService;
-import com.bordafederico.springboot.app.models.service.IPlanService;
+
 
 @Controller   //marcamos asi que la clase es de tipo controlador
 @SessionAttributes("paciente") //al implementar esto lo que hace es que guardar el objeto paciente en la session hasta que el mismo persista completamente en la bd
@@ -40,8 +40,6 @@ public class PacienteController {
 	@Autowired
 	private IObraSocialService obraSocialService;
 	
-	@Autowired
-	private IPlanService planService;
 	
 	//METODO QUE LISTA LOS PACIENTE
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
@@ -59,7 +57,7 @@ public class PacienteController {
 		model.put("paciente", paciente);
 		model.put("obrasociales",obraSocialService.findAll());
 		//model.put("obrasPlanesForm", new ObrasPlanesForm());
-		model.put("planes", planService.findAll());
+		//model.put("planes", planService.findAll());
 		model.put("titulo", "Formulario de Alta de Paciente");
 		
 		return "formpaciente";
@@ -89,7 +87,7 @@ public class PacienteController {
 		}
 		model.put("paciente", paciente);
 		model.put("obrasociales",obraSocialService.findAll());
-		model.put("planes", planService.findAll());//obrasocial.getPlanes_x_obrasocial()
+		//model.put("planes", planService.findAll());//obrasocial.getPlanes_x_obrasocial()
 		model.put("titulo", "Editar Paciente");
 		
 		return "formpaciente";
@@ -130,19 +128,13 @@ public class PacienteController {
 		return "redirect:/listar";
 	}
 	
-	
-	//@RequestMapping
-	//public Model listarObrasSociales(Model model) {
-		//model.addAttribute("obrasociales", obraSocialService.findAll());
-		//model.addAttribute("obrasPlanesForm", new ObrasPlanesForm());
-		//return model;
-	//}
-	
-	
+
 	@RequestMapping(value="/cascada", method=RequestMethod.POST)
-	public @ResponseBody List<Plan> cascada(@RequestBody ObrasPlanesForm form){		
-		return obraSocialService.findOneOSocial(form.getObrasocial()).getPlanes_x_obrasocial();
-	}
+    public @ResponseBody List<Plan> cascada(@RequestParam("obraSocialId") Long obraSocialId){                      
+		
+		return obraSocialService.findOneOSocial(obraSocialId).getPlanes_x_obrasocial();
+
+    }
 	
 	
 	

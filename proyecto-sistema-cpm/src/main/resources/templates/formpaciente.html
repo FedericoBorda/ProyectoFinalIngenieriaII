@@ -102,12 +102,8 @@
 				
 					<div class="form-group row">
 						<label for="obrasocial" th:path="obrasocial" class="col-sm-2 col-form-label">Obra Social</label>
-						<div class="col-sm-6">
-							
-							<select onchange="javascript:cargarPlanes()" th:path="obrasocial" th:field="*{plan.obra_social}" class="form-control">
-								  <!--<option th:items="${obrasociales}" th:itemLabel="nombre_obra_social"
-											th:itemValue="id_obra_social"></option>-->
-								
+						<div class="col-sm-6">							
+							<select id ="obra_social" onchange="javascript:cargarPlanes()" th:path="obrasocial" th:field="*{plan.obra_social}" class="form-control">														
 								<option th:each= "obrasocial: ${obrasociales}"
 										th:value="${obrasocial.id_obra_social}"
 										th:text="${obrasocial.nombre_obra_social}"></option>								
@@ -120,11 +116,7 @@
 						<label for="plan" th:path="plan" class="col-sm-2 col-form-label">Plan</label>
 						<div class="col-sm-6">
 							<select th:field="*{plan}" class="form-control">
-								
-								<option th:each= "plan: ${planes}"
-										th:value="${plan.id_plan}"
-										th:text="${plan.tipo_plan}"></option> 
-									<!-- ${obrasocial.planes_x_obrasocial} -->							
+												
 							</select>						
 							
 						</div>
@@ -142,19 +134,17 @@
 	</div>
 	
 	<script type="text/javascript">
-		//function cargarPlanes() {
-			
-			/*$.ajax({type : "post",
-						url : "cascada",
-						data : JSON.stringify({
-							obrasocial : $('#obrasocial').val(),
-						}),
+		function cargarPlanes() {
+		
+			$.ajax({type : "post",
+						url : "/cascada",
+						data : {
+							obraSocialId : $('#obra_social').val(),
+						},
 						dataType : 'json',
-						contentType : "application/json; charset=utf-8",
 						success : function(dataJson) {
 							$("select[name=plan]").empty();
-							$("select[name=plan]")
-									.append("<option value=''>Seleccione un plan --></option>");
+							$("select[name=plan]").append('<option value="">Seleccione un plan -></option>');
 							$.each(dataJson, function(index, item) {
 								$("select[name=plan]").append(
 										"<option value=" + item.id_plan + ">" + item.tipo_plan
@@ -167,9 +157,9 @@
 						},
 					});
 
-			return false;*/
-			//return alert("hola ");
+			return false;
 		}
+		
 	</script>
 	
 	<footer th:replace="layout/plantilla :: footer"></footer>

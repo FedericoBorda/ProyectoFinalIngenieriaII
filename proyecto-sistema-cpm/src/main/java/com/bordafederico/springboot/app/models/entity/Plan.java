@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="plan")
 public class Plan implements Serializable {
@@ -39,6 +41,7 @@ public class Plan implements Serializable {
 	//relacion con obra social donde digo que mucos planes pertenecen a una obra social
 	@ManyToOne(fetch=FetchType.LAZY)//, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
 	@JoinColumn(name="id_obra_social")
+	@JsonIgnore
 	private ObraSocial obra_social;
 	
 	//con OneToMany digo que la relacion con paciente es: un plan con muchos pacientes 
@@ -46,6 +49,7 @@ public class Plan implements Serializable {
 	//cascade=CascadeType.ALL hace referencia que toda las operaciones como delete o persist se van a realizar en cadena
 	//Con mappedBy lo que hacemos es que sea bidireccional o sea 
 	//"plan va a tener una lista de "pacientes_x_plan", pero si nos vamos a paciente, paciente va a tener un plan
+	@JsonIgnore
 	@OneToMany(mappedBy="plan", fetch=FetchType.LAZY, cascade=CascadeType.ALL) //, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
 	//@JoinColumn(name="id_plan")
 	private List<Paciente> pacientes_x_plan;  //el plan va a tener una lista de pacientes
