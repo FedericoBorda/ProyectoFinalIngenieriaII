@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleof.org">
 <head th:replace="layout/plantilla :: head"></head>
+<link rel="stylesheet" th:href="@{/css/login.css}" />
 
 <body id="mifondo">
 
@@ -9,11 +10,8 @@
 
 	<div class="container py-5">
 
-
-		<form class="form-signin" action="#" th:action="@{/logincheck}"
-			th:object="${userCredentials}" method="post">
-			<div class="card-header">
-			<div class="py-4">
+		<div class="card-header">
+			<div class="py-3">
 				<h3 class=" text-center text-light form-signin-heading">
 					<strong>Ingreso al Sistema</strong>
 				</h3>
@@ -21,7 +19,10 @@
 					<strong>Sistema Centralizado para Profesionales Medicos</strong>
 				</h4>
 			</div>
-			</div>
+		
+		<form class="form-signin" action="#" th:action="@{/logincheck}"
+			th:object="${userCredentials}" method="post">
+			
 			<div class="py-2">
 				<label for="inputEmail" class="sr-only">Usuario</label> 
 					<input type="text" id="inputUsername" class="form-control" placeholder="Usuario=user" th:field="*{username}" />
@@ -29,14 +30,14 @@
 					<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña=user" th:field="*{password}" />
 			</div>
 			
-			<div th:if="${error != null}" class="alert alert-danger" role="alert">usuario
-				o password invalido</div>
+			<div th:if="${error != null}" class="alert alert-danger text-center" role="alert">usuario o password invalido</div>
+			<div th:if="${logout != null}" class="alert alert-info text-center" role="alert">Deslogueo correcto</div>
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">
 				<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Acceder
 			</button>
 		</form>
-
+		</div>
 	</div>
 
 
