@@ -28,9 +28,9 @@ public class GrupoFuncionxRol {
 	@NotEmpty
 	private String nombre_gfr;
 
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Rol rol_gfr;
+	//comento ésto para separarlo del ROL
+	//@ManyToOne(fetch=FetchType.LAZY)
+	//private Rol rol_gfr;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	private GrupoFuncion grupofuncion_grupofuncionrol;
@@ -53,13 +53,15 @@ public class GrupoFuncionxRol {
 		this.nombre_gfr = nombre_gfr;
 	}
 
+	/*
 	public Rol getRol_gfr() {
 		return rol_gfr;
 	}
 
 	public void setRol_gfr(Rol rol_gfr) {
 		this.rol_gfr = rol_gfr;
-	}	
+	}
+	*/	
 	
 	
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+<head th:replace="layout/plantilla :: head"></head>
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+
+<body id="mifondo">
+
+	<!-- <header th:replace="layout/plantilla :: header"></header> -->
+	<form th:action="@{/registracion}" method="get">
+		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+	</form>	
+
+	<div class="container py-5">
+
+		<div class="card-header">
+			<div class="py-3">
+				<h3 class=" text-center text-light form-signin-heading">
+					<strong>Ingreso al Sistema</strong>
+				</h3>
+				<h4 class=" text-center text-light form-signin-heading">
+					<strong>Sistema Centralizado para Profesionales Medicos</strong>
+				</h4>
+			</div>
+			<form th:action="@{/login}" method="POST" class="form-signin">
+						 
+				<input type="text" id="dni" name="dni" th:placeholder="DNI"
+					class="form-control" /> <br/> 
+				<input type="password"  th:placeholder="Password"
+					id="password" name="password" class="form-control" /> <br /> 
+				
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">DNI o Contaseña invalida</p>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+		</form>
+		</div>
+	</div>
+		<!-- este es el que me anda 
+		<form class="form-signin" action="#" th:action="@{/logincheck}"
+			th:object="${userCredentials}" method="post">
+			
+			<div class="py-2">
+				<label for="inputEmail" class="sr-only">Usuario</label> 
+					<input type="text" id="inputUsername" class="form-control" placeholder="Usuario=user" th:field="*{username}" />
+				<label for="inputPassword" class="sr-only">Contraseña</label> 
+					<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña=user" th:field="*{password}" />
+			</div>
+			
+			<div th:if="${error != null}" class="alert alert-danger text-center" role="alert">usuario o password invalido</div>
+			<div th:if="${logout != null}" class="alert alert-info text-center" role="alert">Deslogueo correcto</div>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">
+				<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Acceder
+			</button>
+		</form>
+		</div>
+	</div>
+	 -->
+	<!-- este es el que copie
+	<form th:action="@{/login}" method="POST" class="form-signin">
+			<h3 class="form-signin-heading" th:text="Welcome"></h3>
+			<br/>
+			 
+			<input type="text" id="email" name="email"  th:placeholder="Email"
+				class="form-control" /> <br/> 
+			<input type="password"  th:placeholder="Password"
+				id="password" name="password" class="form-control" /> <br /> 
+				
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+		</form>
+	 -->
+
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+
+
+</body>
+</html>

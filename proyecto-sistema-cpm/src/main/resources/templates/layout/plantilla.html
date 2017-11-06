@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleof.org">
+<html xmlns:th="http://thymeleof.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:fragment="head">
 <meta charset="UTF-8" />
@@ -12,7 +13,9 @@
 
 <body>
 
- 
+ 	<!-- CON ESTO sec:authorize="hasAuthority('ADMIN')" 
+ 	LE ESTOY DICIENDO QUE SOLAMENTE PUEDE VERLO LOS QUE SEAN ADMIN -->
+ 	
 	<!-- ESTABLECIENDO BARRA SUPERIOR DE NAVEGACION -->
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,17 +25,17 @@
 			</button>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav nav">
-					<li class="nav-item active"><a class="nav-link" href="#about"
+					<li class="nav-item active" ><a class="nav-link" href="#about"
 						th:href="@{/index}">Inicio</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="dropdown01"
 						data-toggle="dropdown" role="button">Archivo</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="#">Mis Datos</a> <a
-								class="dropdown-item" href="#">Eliminar Cuenta</a> <a
-								class="dropdown-item" href="#about" th:href="@{/login?logout}">Salir</a>
+							<a class="dropdown-item" href="#">Mis Datos</a> 
+							<a class="dropdown-item" href="#">Eliminar Cuenta</a> 
+							<!--  <a class="dropdown-item" href="#about" th:href="@{/login?logout}">Salir</a>-->
 						</div></li>
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">
 						<a class="nav-link dropdown-toggle" id="dropdown02"
 							data-toggle="dropdown" role="button">Pacientes</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown02">
@@ -41,7 +44,8 @@
 							<a class="dropdown-item" href="#about" th:href="@{/formpaciente}">Alta Paciente</a>
 						</div>
 					</li>
-					<li class="nav-item dropdown"><a
+					
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('USER')"><a
 						class="nav-link dropdown-toggle" id="dropdown03"
 						data-toggle="dropdown" role="button">Turnos</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -49,7 +53,7 @@
 								class="dropdown-item" href="#">Sacar un Turno</a> <a
 								class="dropdown-item" href="#">Mostrar Turnos</a>
 						</div></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
 						class="nav-link dropdown-toggle" id="dropdown04"
 						data-toggle="dropdown" role="button">Obra Social</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -57,7 +61,7 @@
 								class="dropdown-item" th:href="@{/listarobrasocial}">Listar O.Social</a> <a
 								class="dropdown-item" th:href="@{/formobrasocial}">Alta O.Social</a>
 						</div></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
 						class="nav-link dropdown-toggle" id="dropdown05"
 						data-toggle="dropdown" role="button">Nota</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -71,7 +75,11 @@
 							<a class="dropdown-item" href="#">Información</a>
 						</div></li>
 				</ul>
-				
+				<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="get">      				
+      				<button class="btn btn-outline-success my-2 my-sm-0" name="registration" type="submit">Logout</button>
+    			</form>
+    			
+    		
     			
 			</div>
 		</nav>

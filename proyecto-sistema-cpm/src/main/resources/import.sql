@@ -1,4 +1,8 @@
 /* Populate tables */
+INSERT INTO role (role_id, role) VALUES(1, 'ADMIN');
+INSERT INTO role (role_id, role) VALUES(2, 'USER');
+
+
 INSERT INTO obra_social (direccion_obra_social, nombre_obra_social) VALUES('Bv. Oronio 1200', 'Esencial');
 INSERT INTO obra_social (direccion_obra_social, nombre_obra_social) VALUES('Ituzaingo 1201', 'OSDE');
 INSERT INTO obra_social (direccion_obra_social, nombre_obra_social) VALUES('Ninguna', 'Particular');
