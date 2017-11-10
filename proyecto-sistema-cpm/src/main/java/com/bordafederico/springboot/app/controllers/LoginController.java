@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bordafederico.springboot.app.models.entity.Usuario;
+
 import com.bordafederico.springboot.app.models.model.User;
 import com.bordafederico.springboot.app.models.service.UserService;
 //import com.bordafederico.springboot.app.models.model.UserCredential;

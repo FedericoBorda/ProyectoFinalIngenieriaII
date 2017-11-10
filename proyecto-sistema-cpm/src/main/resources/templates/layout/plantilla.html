@@ -6,8 +6,11 @@
 <meta charset="UTF-8" />
 <title th:text="'Sistema CPM' + ${titulo}"></title>
 
+
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />  
 <link rel="stylesheet" th:href="@{/css/fondopersonalizado.css}" />
+
 
 </head>
 
@@ -32,7 +35,7 @@
 						data-toggle="dropdown" role="button">Archivo</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<a class="dropdown-item" href="#">Mis Datos</a> 
-							<a class="dropdown-item" href="#">Eliminar Cuenta</a> 
+							<a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" href="#about" th:href="@{/formturnodisponible}">Habilitar Turnos</a>
 							<!--  <a class="dropdown-item" href="#about" th:href="@{/login?logout}">Salir</a>-->
 						</div></li>
 					<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">

@@ -52,10 +52,16 @@ public class Medico implements Serializable {
 	@OneToMany(mappedBy="medico_nota", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Nota> notas_x_medico;
 	
+	@OneToMany(mappedBy="medico_td", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<TurnoDisponible> td_x_medico;
+
+	
+	
 	public Medico() {
 		turnosConsulta_x_medico = new ArrayList<TurnoConsulta>();
 		especialidades_x_medico = new ArrayList<Especialidad>();
 		notas_x_medico = new ArrayList<Nota>();
+		td_x_medico = new ArrayList<TurnoDisponible>();
 	}
 	
 	
@@ -129,6 +135,18 @@ public class Medico implements Serializable {
 		this.notas_x_medico = notas_x_medico;
 	} 
 	
+		
+	public List<TurnoDisponible> getTd_x_medico() {
+		return td_x_medico;
+	}
+
+
+	public void setTd_x_medico(List<TurnoDisponible> td_x_medico) {
+		this.td_x_medico = td_x_medico;
+	}
+
+
+	
 	
 	public void addTurnoConsulta_a_Medico(TurnoConsulta turnoConsulta) {
 		turnosConsulta_x_medico.add(turnoConsulta);
@@ -140,6 +158,10 @@ public class Medico implements Serializable {
 	}
 	public void addNota_a_Medico(Nota nota) {
 		notas_x_medico.add(nota);
+		
+	}
+	public void addtd_a_Medico(TurnoDisponible td) {
+		td_x_medico.add(td);
 		
 	}
 	

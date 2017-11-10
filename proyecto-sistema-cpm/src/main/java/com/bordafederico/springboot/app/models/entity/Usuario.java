@@ -1,19 +1,19 @@
 package com.bordafederico.springboot.app.models.entity;
 
 
-import java.util.Set;
+//import java.util.Set;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-//import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.JoinTable;
+//import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -64,15 +64,15 @@ public class Usuario {
 	@Column(name = "activo")
 	private int activo;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
-	private Set<Rol> roles;
+	//@ManyToMany(cascade = CascadeType.ALL)
+	//@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
+	//private Set<Rol> roles;
 
 	//comento ésto para hacer el ejemplo de seguridad
-	/*
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Rol rol_usuario;
-	*/
+	
 
 	
 	
@@ -122,12 +122,13 @@ public class Usuario {
 		this.activo = activo;
 	}
 	
+	/*
 	public Set<Rol> getRoles() {
 		return roles;
 	}
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
-	}
+	}*/
 	
 	
 	

@@ -1,16 +1,16 @@
 package com.bordafederico.springboot.app.models.entity;
 
-//import java.util.ArrayList;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-//import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -29,19 +29,19 @@ public class Rol {
 	private String nombrerol;
 
 	//comento lo de abajo para hacer lo del ejemplo de seguridad
-	/*
+	
 	@OneToMany(mappedBy="rol_usuario", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Usuario> usuarios_x_rol;
 	
 	@OneToMany(mappedBy="rol_gfr", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<GrupoFuncionxRol> gfr_x_rol;	
-	*/
 	
-	//public Rol() {
-		//usuarios_x_rol = new ArrayList<Usuario>();	
-		//gfr_x_rol =  new ArrayList<GrupoFuncionxRol>();
+	
+	public Rol() {
+		usuarios_x_rol = new ArrayList<Usuario>();	
+		gfr_x_rol =  new ArrayList<GrupoFuncionxRol>();
 
-	//}
+	}
 	
 	
 	public int getId_rol() {
@@ -59,7 +59,7 @@ public class Rol {
 	
 	
 	
-	/*
+	
 	public List<Usuario> getUsuarios_x_rol() {
 		return usuarios_x_rol;
 	}
@@ -75,6 +75,6 @@ public class Rol {
 	public void addgfrAlRol(GrupoFuncionxRol gfr) {
 		gfr_x_rol.add(gfr);
 	}
-	*/
+	
 
 }
