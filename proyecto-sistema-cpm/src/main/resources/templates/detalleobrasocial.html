@@ -26,7 +26,7 @@
 								<th>Nombre</th>
 								<th>Descripcion</th>
 								<th>Editar</th>
-								<th>Eliminar</th>								
+								<!-- <th>Eliminar</th> -->								
 							</tr>
 						</thead>
 
@@ -38,10 +38,10 @@
 								 <td><a class="btn btn-primary btn-xs"
 									th:href="@{'/plan/formplan/'  + ${obrasocial.id_obra_social} + '/' + ${plan.id_plan}}"
 									th:text="'editar'"></a></td>
-								<td><a class="btn btn-danger btn-xs"
+								<!--<td><a class="btn btn-danger btn-xs"
 									th:href="@{'/plan/eliminarplan/' + ${plan.id_plan}}"
 									th:text="'eliminar'"
-									onclick="return confirm('Estas seguro que deseas eliminar este Plan?');"></a></td>								
+									onclick="return confirm('Estas seguro que deseas eliminar este Plan?');"></a></td>	-->							
 								
 							</tr>
 						</tbody>

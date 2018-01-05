@@ -29,7 +29,7 @@
 								<th>Obra Social</th>
 								<th>Plan</th>
 								<th>Editar</th>
-								<th>Eliminar</th>
+								<!-- <th>Eliminar</th> -->
 							</tr>
 						</thead>
 
@@ -48,10 +48,10 @@
 								<td><a class="btn btn-primary btn-xs"
 									th:href="@{/formpaciente/} + ${paciente.dni_paciente}"
 									th:text="'editar'"></a></td>
-								<td><a class="btn btn-danger btn-xs"
+								<!-- <td><a class="btn btn-danger btn-xs"
 									th:href="@{/eliminar/} + ${paciente.dni_paciente}"
 									th:text="'eliminar'"
-									onclick="return confirm('Estas seguro que deseas eliminar al paciente?');"></a></td>
+									onclick="return confirm('Estas seguro que deseas eliminar al paciente?');"></a></td>-->
 							</tr>
 						</tbody>
 					</table>

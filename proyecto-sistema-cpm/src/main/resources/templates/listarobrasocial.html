@@ -23,7 +23,7 @@
 								<th>Direccion</th>
 								<th>Plan/es</th>
 								<th>Editar</th>
-								<th>Eliminar</th>								
+								<!--<th>Eliminar</th>  -->								
 							</tr>
 						</thead>
 
@@ -38,10 +38,10 @@
 								<td><a class="btn btn-primary btn-xs"
 									th:href="@{/formobrasocial/} + ${obrasocial.id_obra_social}"
 									th:text="'editar'"></a></td>
-								<td><a class="btn btn-danger btn-xs"
+								<!--<td><a class="btn btn-danger btn-xs"
 									th:href="@{/eliminaros/} + ${obrasocial.id_obra_social}"
 									th:text="'eliminar'"
-									onclick="return confirm('Estas seguro que deseas eliminar una Obra Social?');"></a></td>
+									onclick="return confirm('Estas seguro que deseas eliminar una Obra Social?');"></a></td>-->
 							</tr>
 						</tbody>
 					</table>

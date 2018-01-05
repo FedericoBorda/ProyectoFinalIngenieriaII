@@ -2,295 +2,822 @@
 <html xmlns:th="http://thymeleof.org">
 <head th:replace="layout/plantilla :: head"></head>
 
+<script th:src="@{/js/jquery2.js}"></script>
+
  
 <body id="mifondo">
-	
+
 	<header th:replace="layout/plantilla :: header"></header>
 	
-	<div class="container py-4">
+	<div class="px-4 py-4">
 		<div class="card bg-light">
 			<div class="card-header">
 				<h4 class="text-center">
-					<strong th:text="${titulo}"></strong>
+					<strong  th:text="${titulo}"></strong>
 				</h4>
 			</div>
+			
 			<div class="card-body">
-				
-				<form  th:action="@{/formpaciente}" th:object="${paciente}"
-					method="post" >
-					
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label"><strong>Año:</strong></label>
-						<div class="col-sm-6">
-							<select >
-								<option th:value="2017">2017</option>
-								<option th:value="2018">2018</option>
-								<option th:value="2019">2019</option>
-								<option th:value="2019">2020</option>
-							</select>
-						</div>
-					</div>
-					
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label"><strong>Mes:</strong></label>
-						<div class="col-sm-6">
-							<select >
-								<option th:value="1">Enero</option>
-								<option th:value="2">Febrero</option>
-								<option th:value="3">Marzo</option>
-								<option th:value="4">Abril</option>
-								<option th:value="5">Mayo</option>
-								<option th:value="6">Junio</option>
-								<option th:value="7">Julio</option>
-								<option th:value="8">Agosto</option>
-								<option th:value="9">Septiembre</option>
-								<option th:value="10">Octubre</option>
-								<option th:value="11">Noviembre</option>
-								<option th:value="12">Diciembre</option>
-							</select>
-						</div>
-					</div>
-					
-					
-				</form>	
-				
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover">
-						<thead class="thead-inverse" >
-							<tr>
-								<th style="text-align:center;" colspan="1">Día</th>
-								<th style="text-align:center;" colspan="9">Horario</th>
-							</tr>
-							
-							<tr>
-								<th style="text-align:center;"><span class="fa fa-arrow-down" aria-hidden="true"></span></th>
-								<th style="text-align:center;">08:00</th>
-								<th style="text-align:center;">09:00</th>
-								<th style="text-align:center;">10:00</th>
-								<th style="text-align:center;">11:00</th>
-								<th style="text-align:center;">12:00</th>
-								<th style="text-align:center;">13:00</th>
-								<th style="text-align:center;">14:00</th>
-								<th style="text-align:center;">15:00</th>
-								<th style="text-align:center;">16:00</th>
+				<div class="row">
+					<div class="col-md-12">
+						
+						<ul class="nav nav-tabs">
+							<li class="nav-item">
+						    	<a class="nav-link active" href="#tab2" role="tab" data-toggle="tab">Activación del día 1 al 15</a>
+						 	 </li>
+						 	 <li class="nav-item">
+						   		 <a class="nav-link" href="#tab3" role="tab" data-toggle="tab">Activación del día 16 al 31</a>
+						  	</li>
+						  	<li class="nav-item">
+						     	<a class="nav-link " href="#" th:href="@{/listarturnodisponible}">Lista de Turnos Activos</a>
+						  	</li>			  
+							 
+						</ul>
+						  
+						<div class="tab-content">
+							<!--  <div role="tabpanel" class="tab-pane active" id="tab1">	
 								
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr >
-								<td style="text-align:center;"><strong>1</strong></td>
-								<td>
-									<input type="submit" value="Activar" class="btn btn-primary" />
-								</td>								
-								<td style="text-align:center;">
-									<button type="submit" class="btn btn-success">
-  										<span class="fa fa-check" aria-hidden="true"></span>
-  									</button>
-  									<button type="submit" class="btn btn-danger">
-  										<span class="fa fa-times" aria-hidden="true"></span>
-  									</button>
-								</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>2</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>3</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>4</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>5</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>6</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>7</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>8</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>9</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>10</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>11</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>12</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>13</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>14</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							<tr >
-								<td style="text-align:center;"><strong>15</strong></td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>
-								<td>boton</td>								
-							</tr>
-							
-							
-						</tbody>
-					</table>
+													
+												
+							</div>-->
+							<div role="tabpanel" class="tab-pane" id="tab2">
+								 <div class="container">	
+									<article>
+										<p>
+											<i><strong>Instrucciones:</strong></i><br/>
+											<i>-Primero seleccione <strong>año</strong>, un <strong>mes</strong>.</i><br/>
+											<i>-Para verificar si un turno ya fue activado previamente debe presionar el botón</i>
+											<button type="button" class="btn btn-sm btn-warning">
+					  							<span class="fa fa-search" aria-hidden="true"></span>
+					  						</button>
+					  						<i>correspondiente al <strong>día</strong> y <strong>horario</strong>.</i><br/>
+					  						<i>-Si no ha sido activado previamente se habilitará el botón</i>
+					  						<button type="button" class="btn btn-sm btn-success">
+					  							<span class="fa fa-check" aria-hidden="true"></span>
+					  						</button>
+					  						<i>para poder habilitar el turno.</i><br/>
+					  						<i>-Si el turno fue activado y no fue asignado a ningún paciente se podrá desabilitarlo presionando</i>
+					  						<button type="button" class="btn btn-sm btn-danger">
+					  							<span class="fa fa-times" aria-hidden="true"></span> 
+					  						</button>
+					  						<i>.</i>										
+										</p>
+									</article>
+								</div>	
+								
+								<form  th:action="@{/formturnodisponible}" th:object="${turnodiponible}" method="post" >
 					
+									<div class="container">
+										<div class="form-group row">
+											<label class="col-form-label"><strong>Año:</strong></label>
+											<div class="col-sm-2">
+												<select th:field="*{year}" class="form-control">
+													<option th:value="2017">2017</option>
+													<option th:value="2018">2018</option>
+													<option th:value="2019">2019</option>
+													<option th:value="2019">2020</option>
+												</select>
+											</div>
+										
+											<label class="col-form-label"><strong>Mes:</strong></label>
+											<div class="col-sm-2">
+												<select th:field="*{month}" class="form-control">
+													<option th:value="1">Enero</option>
+													<option th:value="2">Febrero</option>
+													<option th:value="3">Marzo</option>
+													<option th:value="4">Abril</option>
+													<option th:value="5">Mayo</option>
+													<option th:value="6">Junio</option>
+													<option th:value="7">Julio</option>
+													<option th:value="8">Agosto</option>
+													<option th:value="9">Septiembre</option>
+													<option th:value="10">Octubre</option>
+													<option th:value="11">Noviembre</option>
+													<option th:value="12">Diciembre</option>
+												</select>
+											</div>
+										</div>				
+									</div>
+									<input type="hidden" name="day" id="day" th:value="999"/>
+									<input type="hidden" name="hour" id="hour" th:value="998"/>
+									<input type="hidden" name="check_activado" id="check_activado" th:value="1"/>
+									<input type="hidden" name="check_asignado" id="check_asignado" th:value="0"/>					
+									<input type="hidden" th:field="*{id_td}"/>	 
+									
+									<!-- 					
+									<div class="form-group row">
+										<div class="col-sm-6">
+											<input type="button" id="button_3" name="button_3" value="Probarrr" class="btn btn-danger" />
+										</div>
+									</div>
+									 -->	
+								
+								   
+								
+									<div class="table-responsive">
+										<table class="table table-sm table-bordered table-hover">
+											<thead class="thead-inverse" >
+												<tr>
+													<th style="text-align:center;" colspan="1">Día</th>
+													<th style="text-align:center;" colspan="9">Horario</th>
+												</tr>
+												
+												<tr>
+													<th style="text-align:center;"><span class="fa fa-arrow-down" aria-hidden="true"></span></th>
+													<th style="text-align:center;">08:00</th>
+													<th style="text-align:center;">09:00</th>
+													<th style="text-align:center;">10:00</th>
+													<th style="text-align:center;">11:00</th>
+													<th style="text-align:center;">12:00</th>
+													<th style="text-align:center;">13:00</th>
+													<th style="text-align:center;">14:00</th>
+													<th style="text-align:center;">15:00</th>
+													<th style="text-align:center;">16:00</th>
+													
+												</tr>
+											</thead>
 					
-				</div>
+											<tbody>
+												<tr >
+													<td style="text-align:center;"><strong>1</strong></td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar1" name="comprobar1" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar1" name="activar1" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar1" name="eliminar1" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span> 
+					  									</button>
+													</td>								
+													<td style="text-align:center;">
+														<button type="button" id="comprobar2" name="comprobar2" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar2" name="activar2" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar2" name="eliminar2" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+					  								</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar3" name="comprobar3" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar3" name="activar3" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar3" name="eliminar3" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar4" name="comprobar4" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar4" name="activar4" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar4" name="eliminar4" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar5" name="comprobar5" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar5" name="activar5" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar5" name="eliminar5" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar6" name="comprobar6" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar6" name="activar6" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar6" name="eliminar6" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar7" name="comprobar7" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar7" name="activar7" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar7" name="eliminar7" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar8" name="comprobar8" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar8" name="activar8" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar8" name="eliminar8" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar9" name="comprobar9" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar9" name="activar9" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar9" name="eliminar9" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>2</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>3</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>4</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>5</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>6</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>7</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>8</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>9</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>10</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>11</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>12</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>13</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>14</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>15</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												
+												
+											</tbody>
+										</table>
+										
+										
+									</div>
+								</form>
+											
+							</div>
+							<div role="tabpanel" class="tab-pane" id="tab3">
+								 <form  th:action="@{/formturnodisponible}" th:object="${turnodiponible}" method="post" >
+					
+									<div class="container py-4">
+										<div class="form-group row">
+											<label class="col-form-label"><strong>Año:</strong></label>
+											<div class="col-sm-2">
+												<select th:field="*{year}" class="form-control">
+													<option th:value="2017">2017</option>
+													<option th:value="2018">2018</option>
+													<option th:value="2019">2019</option>
+													<option th:value="2019">2020</option>
+												</select>
+											</div>
+										
+											<label class="col-form-label"><strong>Mes:</strong></label>
+											<div class="col-sm-2">
+												<select th:field="*{month}" class="form-control">
+													<option th:value="1">Enero</option>
+													<option th:value="2">Febrero</option>
+													<option th:value="3">Marzo</option>
+													<option th:value="4">Abril</option>
+													<option th:value="5">Mayo</option>
+													<option th:value="6">Junio</option>
+													<option th:value="7">Julio</option>
+													<option th:value="8">Agosto</option>
+													<option th:value="9">Septiembre</option>
+													<option th:value="10">Octubre</option>
+													<option th:value="11">Noviembre</option>
+													<option th:value="12">Diciembre</option>
+												</select>
+											</div>
+										</div>				
+									</div>
+									<input type="hidden" name="day" id="day" th:value="999"/>
+									<input type="hidden" name="hour" id="hour" th:value="998"/>
+									<input type="hidden" name="check_activado" id="check_activado" th:value="1"/>
+									<input type="hidden" name="check_asignado" id="check_asignado" th:value="0"/>					
+									<input type="hidden" th:field="*{id_td}"/>	
+									 
+									<!-- 					
+									<div class="form-group row">
+										<div class="col-sm-6">
+											<input type="button" id="button_3" name="button_3" value="Probarrr" class="btn btn-danger" />
+										</div>
+									</div>
+									 -->	
+								
+								  
+								 
+									<div class="table-responsive">
+										<table class="table table-sm table-bordered table-hover">
+											<thead class="thead-inverse" >
+												<tr>
+													<th style="text-align:center;" colspan="1">Día</th>
+													<th style="text-align:center;" colspan="9">Horario</th>
+												</tr>
+												
+												<tr>
+													<th style="text-align:center;"><span class="fa fa-arrow-down" aria-hidden="true"></span></th>
+													<th style="text-align:center;">08:00</th>
+													<th style="text-align:center;">09:00</th>
+													<th style="text-align:center;">10:00</th>
+													<th style="text-align:center;">11:00</th>
+													<th style="text-align:center;">12:00</th>
+													<th style="text-align:center;">13:00</th>
+													<th style="text-align:center;">14:00</th>
+													<th style="text-align:center;">15:00</th>
+													<th style="text-align:center;">16:00</th>
+													
+												</tr>
+											</thead>
+					
+											<tbody>
+												<tr >
+													<td style="text-align:center;"><strong>16</strong></td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar1" name="comprobar1" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar1" name="activar1" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar1" name="eliminar1" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span> 
+					  									</button>
+													</td>								
+													<td style="text-align:center;">
+														<button type="button" id="comprobar2" name="comprobar2" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar2" name="activar2" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar2" name="eliminar2" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+					  								</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar3" name="comprobar3" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar3" name="activar3" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar3" name="eliminar3" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar4" name="comprobar4" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar4" name="activar4" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar4" name="eliminar4" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar5" name="comprobar5" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar5" name="activar5" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar5" name="eliminar5" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar6" name="comprobar6" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar6" name="activar6" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar6" name="eliminar6" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar7" name="comprobar7" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar7" name="activar7" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar7" name="eliminar7" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar8" name="comprobar8" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar8" name="activar8" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar8" name="eliminar8" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>
+													<td style="text-align:center;">
+														<button type="button" id="comprobar9" name="comprobar9" class="btn btn-sm btn-warning">
+					  										<span class="fa fa-search" aria-hidden="true"></span>
+					  									</button>
+														<button type="submit" id="activar9" name="activar9" disabled="disabled" class="btn btn-sm btn-success">
+					  										<span class="fa fa-check" aria-hidden="true"></span>
+					  									</button>
+					  									<button type="submit" id="eliminar9" name="eliminar9" disabled="disabled" class="btn btn-sm btn-danger">
+					  										<span class="fa fa-times" aria-hidden="true"></span>
+					  									</button>
+													</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>17</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>18</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>19</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>20</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>21</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>22</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>23</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>24</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>25</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>26</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>27</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>28</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>29</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>30</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												<tr >
+													<td style="text-align:center;"><strong>31</strong></td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>
+													<td>boton</td>								
+												</tr>
+												
+												
+											</tbody>
+										</table>
+										
+										
+									</div>
+								</form>				
+							</div>
+						</div>			
+					</div>	
+				</div>	
 			</div>
+			
+			
+			
+			
+									
+					
+			
 		
 		</div>
 	</div>
-	<button type="button" class="btn btn-default btn-lg">
-  		<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-	</button>
-	<i class="glyphicon glyphicon-cloud"></i>
-<i class="glyphicon glyphicon-remove"></i>
-<i class="glyphicon glyphicon-user"></i>
-<i class="glyphicon glyphicon-envelope"></i>
-<i class="glyphicon glyphicon-thumbs-up"></i>
 	
 	
+	<script type="text/javascript">		
 	
+		/*$(function(){
+			$("#button3").click(function(){
+				$("#day").val("20");
+				$("#hour").val("50");
+				
+				alert("dia= " + $("#day").val() + "\n" + "hora= " + $("#hour").val());
+				$('#button3').attr("disabled", true);
+			});
+			
+			
+		});*/
+			
+	</script>
 	
+	<script th:src="@{/js/funturnosdisponibles.js}"></script>
 	<footer th:replace="layout/plantilla :: footer"></footer>
+	
 
 </body>
 </html>

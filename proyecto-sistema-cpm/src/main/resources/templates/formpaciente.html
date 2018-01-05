@@ -23,7 +23,7 @@
 						<label class="col-sm-2 col-form-label">DNI</label>
 						<div class="col-sm-6">
 							<input type="number" th:field="*{dni_paciente}"
-								class="form-control" th:errorclass="'form-control alert-danger'" />
+								class="form-control" th:errorclass="'form-control alert-danger'"/>
 							<small class="form-text text-danger"
 								th:if="${#fields.hasErrors('dni_paciente')}"
 								th:errors="*{dni_paciente}"></small>
@@ -50,10 +50,12 @@
 								th:errors="*{apellido_paciente}"></small>
 						</div>
 					</div>
+					<!--SI EN INPUT TYPE PONGO DATE SEVE QUE POR LA VERSION DE FIREFOX
+					 ME CREA UN DATEPICK Y NO FUNCA EL CAMPO (VERIFICAR)  -->
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
 						<div class="col-sm-6">
-							<input type="date" th:field="*{fecha_nacimiento_pa}"
+							<input type="text" th:field="*{fecha_nacimiento_pa}"
 								class="form-control" placeholder="dd/mm/yyyy" th:errorclass="'form-control alert-danger'" />
 							<small class="form-text text-danger"
 								th:if="${#fields.hasErrors('fecha_nacimiento_pa')}"

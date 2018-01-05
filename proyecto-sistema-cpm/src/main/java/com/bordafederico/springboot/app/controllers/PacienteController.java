@@ -130,7 +130,7 @@ public class PacienteController {
 	
 
 	@RequestMapping(value="/cascada", method=RequestMethod.POST)
-    public @ResponseBody List<Plan> cascada(@RequestParam("obraSocialId") Long obraSocialId){                      
+    public @ResponseBody List<Plan> cascada(@RequestParam("obraSocialId") Long obraSocialId){                   
 		
 		return obraSocialService.findOneOSocial(obraSocialId).getPlanes_x_obrasocial();
 

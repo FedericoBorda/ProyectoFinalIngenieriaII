@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleof.org">
+
+<head th:replace="layout/plantilla :: head"></head>
+
+<body id="mifondo">
+
+	<header th:replace="layout/plantilla :: header"></header>
+
+	<div class="px-4 py-4">
+
+		<div class="card bg-light">
+			<div class="card-header">
+				<h4><strong th:text="${titulo}"></strong></h4>
+			</div>
+			<div class="card-body">
+				<div class="container px-4">
+					<div class="table-responsive">
+						<table class="table table-sm table-bordered table-hover">
+							<thead class="thead-inverse">
+								<tr>
+									<th style="text-align:center;">Hora</th>
+									<th style="text-align:center;">Día</th>
+									<th style="text-align:center;">Mes</th>
+									<th style="text-align:center;">Año</th>
+									<th style="text-align:center;">Activado</th>
+									<th style="text-align:center;">Asignado</th>
+	
+								</tr>
+							</thead>
+	
+							<tbody>
+								<tr th:each="turnodisponible: ${turnosdisponibles}">
+									<td style="text-align:center;" th:text="${turnodisponible.hour}"></td>
+									<td style="text-align:center;" th:text="${turnodisponible.day}"></td>
+									<td style="text-align:center;" th:text="${turnodisponible.month}"></td>
+									<td style="text-align:center;" th:text="${turnodisponible.year}"></td>
+									<td style="text-align:center;" th:text="${turnodisponible.check_activado}"></td>
+									<td style="text-align:center;" th:text="${turnodisponible.check_asignado}"></td>
+	
+	
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>
